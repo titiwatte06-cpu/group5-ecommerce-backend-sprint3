@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const productsSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema(
   {
     productname: {
       type: String,
@@ -8,6 +8,11 @@ const productsSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
+      required: true,
+    },
+    categoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
       required: true,
     },
     quantity: {
@@ -20,18 +25,17 @@ const productsSchema = new mongoose.Schema(
     protein: {
       type: String,
     },
-    //   categoryId: ObjectId, // ref: 'Category'
     tag: {
       type: String,
-    }, // 'Best Seller', 'New', ...
+    },
     desc: {
       type: String,
     },
     imageUrl: { type: String },
-    isActive: { type: Boolean, default: true }, // default: true
+    isActive: { type: Boolean, default: true },
   },
 
   { timestamps: true },
 );
 
-export const Product = mongoose.model("Product", productsSchema);
+export const Product = mongoose.model("Product", productSchema);

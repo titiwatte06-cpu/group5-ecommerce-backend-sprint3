@@ -1,15 +1,15 @@
 {
   "name": "group5-ecommerce-sprint3",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend project of Group5 Ecommerce",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --env-file=.env --watch server.js"
-    "dev": "node src/index.js"
+    "start": "node src/server.js",
+    "dev": "node --env-file=.env --watch src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Group 5 teams",
   "license": "ISC",
   "type": "module",
   "dependencies": {
@@ -20,16 +20,5 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.6.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.14"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cheryblossom-dev/group5-ecommerce-backend-sprint3.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cheryblossom-dev/group5-ecommerce-backend-sprint3/issues"
-  },
-  "homepage": "https://github.com/cheryblossom-dev/group5-ecommerce-backend-sprint3#readme"
+  }
 }

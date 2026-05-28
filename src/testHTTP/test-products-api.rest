@@ -2,18 +2,15 @@
 ### get all products
 GET http://localhost:3000/api/products
 
-###
-GET http://localhost:3000/api/products/6a17ebf96161cc39ba944a7c
-
-
+### Get product by id
+GET http://localhost:3000/api/products/6a17f760a0b9d736a566ce58
 
 ### create new product
 POST http://localhost:3000/api/products
 Content-Type: application/json
-
-{  "productname":"cat",
+{  "productname":"Dog",
       "price":199,
-       "kcal":100,
+      "kcal":100,
       "protein":"10",
       "tag":"New",
       "desc":"aa",

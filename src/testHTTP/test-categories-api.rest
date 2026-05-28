@@ -1,0 +1,26 @@
+### Get all categories
+GET http://localhost:3000/api/categories
+
+### Get category by id
+GET http://localhost:3000/api/categories/6a1858cee42d6e025143d78a
+
+
+### Create new category
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+    "categoryname": "Test"
+}
+
+### Edit category
+PUT http://localhost:3000/api/categories/6a1858cee42d6e025143d78a
+Content-Type: application/json
+
+{
+    "categoryname": "Supplement"
+}
+
+### Delete category
+DELETE http://localhost:3000/api/categories/6a1864232dee8091adfbf35a
+Content-Type: application/json
