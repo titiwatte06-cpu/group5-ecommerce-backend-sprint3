@@ -9,6 +9,10 @@ export const addressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  address: {
+    type: String,
+    required: true,
+  },
   isDefault: {
     type: Boolean,
     default: true,

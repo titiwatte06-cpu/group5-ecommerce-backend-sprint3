@@ -77,12 +77,12 @@ export const deleteUser = async (req, res, next) => {
   try {
     const foundUser = await User.findById(id);
     if (!foundUser) {
-      res
+      return res
         .status(404)
         .json({ success: false, message: `User id ${id} not found` });
     }
     await foundUser.deleteOne();
-    res
+    return res
       .status(200)
       .json({ success: true, message: `User id ${id} success deleted` });
   } catch (error) {

@@ -2,7 +2,12 @@ import { Product } from "./product.model.js";
 
 export const getProducts = async (req, res, next) => {
   try {
-    const allProducts = await Product.find();
+    const { q, categoryId } = req.query;
+    const filter = { isActive: true };
+    if (q) filter.productname = { $regex: q, $options: "i" };
+    if (categoryId) filter.categoryId = categoryId;
+
+    const allProducts = await Product.find(filter);
     return res.status(200).json({ success: true, data: allProducts });
   } catch (error) {
     next(error);
@@ -31,6 +36,8 @@ export const createProduct = async (req, res, next) => {
     quantity,
     kcal,
     protein,
+    carbs,
+    fat,
     tag,
     desc,
     imageUrl,
@@ -51,6 +58,8 @@ export const createProduct = async (req, res, next) => {
       quantity,
       kcal,
       protein,
+      carbs,
+      fat,
       tag,
       desc,
       imageUrl,
@@ -96,6 +105,8 @@ export const updateProduct = async (req, res, next) => {
     if (kcal !== undefined) foundProduct.kcal = kcal;
 
     if (protein !== undefined) foundProduct.protein = protein;
+    if (carbs !== undefined) foundProduct.carbs = carbs;
+    if (fat !== undefined) foundProduct.fat = fat;
 
     if (tag !== undefined) foundProduct.tag = tag;
 
@@ -120,14 +131,15 @@ export const deleteProduct = async (req, res, next) => {
   try {
     const foundProduct = await Product.findById(id);
     if (!foundProduct) {
-      res
+      return res
         .status(404)
         .json({ success: false, message: `Product id ${id} not found!` });
     }
-    await foundProduct.deleteOne();
-    res
+    foundProduct.isActive = false;
+    await foundProduct.save();
+    return res
       .status(200)
-      .json({ success: true, message: `Product id ${id} success deleted` });
+      .json({ success: true, message: `Product id ${id} deactivated` });
   } catch (error) {
     next(error);
   }
