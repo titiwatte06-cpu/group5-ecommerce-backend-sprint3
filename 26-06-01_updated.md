@@ -1,23 +1,28 @@
-import { Router } from "express";
+# Group 5 Ecommerce-backend_updated 2026-06-01
 
-import { authUser } from "../middleware/authUser.js";
+## Install/update tools
 
-export const router = Router();
+```bash
+- cookie-parser
+- cors
+- bcrypt
+- express-rate-limit
+- helmet
+- jsonwebtoken
+```
 
-import {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
-  userLogin,
-  authenUser,
-  userLogout,
-  getUserAddresses,
-  addUserAddress,
-  updateUserAddress,
-  deleteUserAddress,
-} from "../modules/user/user.controller.js";
+## Middlewae
+
+```bash
+- authUser.js
+- error.middleware.js
+- rateLimiter.js
+```
+
+## users/address
+
+```bash
+routes
 
 router.post("/login", userLogin);
 router.post("/logout", userLogout);
@@ -32,3 +37,17 @@ router.get("/", getUsers);
 router.get("/:id", getUser);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
+
+```
+
+## products
+
+```bash
+routes
+
+router.get("/", getProducts); *with query categoryId, productname, price=ASC/DSC
+router.get("/:id", getProduct);
+router.post("/", createProduct);
+router.delete("/:id", deleteProduct); *soft delete, only isActive = false
+router.put("/:id", updateProduct);
+```

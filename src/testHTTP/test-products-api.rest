@@ -1,6 +1,19 @@
 
-### get all products
+### Get all products
 GET http://localhost:3000/api/products
+
+### Get products: filter by name or part of name
+GET http://localhost:3000/api/products?productname=chicken
+
+### Get products: Combined filtering (Category + Query + Sort)
+GET http://localhost:3000/api/products?categoryId=6a1858cee42d6e025143d78a&productname=oil&sort=price_asc
+
+### Get products: filter by categoryId
+GET http://localhost:3000/api/products?categoryId=6a1858bc63cbfad8097bf4ea
+
+
+### Get products: Sort by price (asc: cheapest first, dsc: highest first)
+GET http://localhost:3000/api/products?sort=price_asc
 
 ### Get product by id
 GET http://localhost:3000/api/products/6a17f760a0b9d736a566ce58
@@ -9,21 +22,22 @@ GET http://localhost:3000/api/products/6a17f760a0b9d736a566ce58
 POST http://localhost:3000/api/products
 Content-Type: application/json
 
-{      "productname":"Omega-3 Fish Oil3",
+{      
+    "productname":"test",
     "price":380,
     "categoryId":"6a1858cee42d6e025143d78a",
-    "quantity":10,
+    "quantity": 1,
     "kcal":10,
     "protein":"0g",
     "carbs":"30g",
     "fat":"8g",
     "tag":"",
-    "desc":"น้ำมันปลาเข้มข้น บำรุงสมอง หัวใจ และลดการอักเสบของกล้ามเนื้อ",
+    "desc":"Test",
     "imageUrl":"aaaa",
     "isActive":false
 }
 
-###update product
+### update product
 PUT http://localhost:3000/api/products/6a19117e3b9010b699421c82
 Content-Type: application/json
 
@@ -31,10 +45,6 @@ Content-Type: application/json
     "price": 199,
     "isActive":true
  }
+
 ### delete product
-DELETE http://localhost:3000/api/products/6a19336b9293e984aa1a8903
-
-
-
-
-
+DELETE http://localhost:3000/api/products/6a1d2af89115c5dfade23466

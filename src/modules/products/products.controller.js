@@ -2,13 +2,29 @@ import { Product } from "./product.model.js";
 
 export const getProducts = async (req, res, next) => {
   try {
-    const { q, categoryId } = req.query;
-    const filter = { isActive: true };
-    if (q) filter.productname = { $regex: q, $options: "i" };
-    if (categoryId) filter.categoryId = categoryId;
+    const { productname, sort, categoryId } = req.query;
+    let filter = { isActive: true }; //Show only product "isActive: true"
 
-    const allProducts = await Product.find(filter);
-    return res.status(200).json({ success: true, data: allProducts });
+    if (productname) {
+      filter.productname = { $regex: productname, $options: "i" };
+    }
+
+    if (categoryId) {
+      filter.categoryId = categoryId;
+    }
+
+    let query = Product.find(filter);
+
+    if (sort === "price_asc") {
+      query = query.sort({ price: 1 });
+    } else if (sort === "price_dsc") {
+      query = query.sort({ price: -1 });
+    }
+
+    const products = await query;
+    return res
+      .status(200)
+      .json({ success: true, count: products.length, data: products });
   } catch (error) {
     next(error);
   }
@@ -17,7 +33,7 @@ export const getProducts = async (req, res, next) => {
 export const getProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const foundProduct = await Product.findById(id);
+    const foundProduct = await Product.findOne({ _id: id, isActive: true }); //Show only product "isActive: true"
     if (!foundProduct) {
       return res
         .status(404)
@@ -28,6 +44,7 @@ export const getProduct = async (req, res, next) => {
     next(error);
   }
 };
+
 export const createProduct = async (req, res, next) => {
   const {
     productname,
@@ -55,7 +72,7 @@ export const createProduct = async (req, res, next) => {
       productname,
       price,
       categoryId,
-      quantity,
+      quantity: quantity === null || quantity === undefined ? 1 : quantity, //Prevent null value, default: 1
       kcal,
       protein,
       carbs,
@@ -100,7 +117,9 @@ export const updateProduct = async (req, res, next) => {
 
     if (categoryId !== undefined) foundProduct.categoryId = categoryId;
 
-    if (quantity !== undefined) foundProduct.quantity = quantity;
+    if (quantity !== undefined) {
+      foundProduct.quantity = quantity === null ? 1 : quantity;
+    } //Prevent null value send to database, default is 1.
 
     if (kcal !== undefined) foundProduct.kcal = kcal;
 
@@ -135,11 +154,14 @@ export const deleteProduct = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: `Product id ${id} not found!` });
     }
+
+    //Soft delete by set isActive: false
     foundProduct.isActive = false;
     await foundProduct.save();
-    return res
-      .status(200)
-      .json({ success: true, message: `Product id ${id} deactivated` });
+    return res.status(200).json({
+      success: true,
+      message: `Product ${foundProduct.productname} deactivated`,
+    });
   } catch (error) {
     next(error);
   }

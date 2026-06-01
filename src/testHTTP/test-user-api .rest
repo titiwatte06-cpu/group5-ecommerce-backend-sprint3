@@ -10,22 +10,22 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-   "username":"jane",
-      "email":"jane2@example.com",
-      "password":"pass1234",
-      "tel":"012345678",
-      "role":"user",
-      "address":[
-        {"label":"1234 phuket",
-        "name":"jane",
+    "username":"John Doe",
+    "email":"johndoe@mail.com",
+    "password":"pass1234",
+    "tel":"089-0000000",
+    "role":"user",
+    "address":[
+      {
+        "label":"Main address",
+        "recieveName":"xxx",
+        "recieveAddress":"xxx",
+        "recieveTel":"xxx",
         "isDefault":true
-      },
-        {"label":"1234 bangkok",
-        "name":"jip",
-        "isDefault":false
       }]
 }
-###
+
+### update user
 PUT http://localhost:3000/api/users/6a19422408c6f705aea70550
 Content-Type: application/json
 
@@ -47,4 +47,50 @@ Content-Type: application/json
 }
 
 ### delete user
-DELETE http://localhost:3000/api/users/6a19428b08c6f705aea70552
+DELETE http://localhost:3000/api/users/6a1c5482132b58a17a77d75d
+
+### User login
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "user7.test@example.com",
+  "password": "pass1234"
+}
+
+### user logout
+POST http://localhost:3000/api/users/logout
+Content-Type: application/json
+
+{
+  "email": "spolmag@gmail.com",
+  "password": "pass1234"
+}
+
+### View current user's address
+GET http://localhost:3000/api/users/me/addresses
+
+### Add user's new address
+POST http://localhost:3000/api/users/me/addresses
+Content-Type: application/json
+
+{
+  "label":"บ้านเมียน้อย",
+  "recieveName":"น้องจอย",
+  "recieveAddress": "ซักที่นึงที่จะต้องไม่บอกเมียหลวง",
+  "recieveTel":"08x-xxxxxxx"
+}
+
+### Update existing user address
+PUT http://localhost:3000/api/users/me/addresses/6a1c53eae6114c0177404960
+Content-Type: application/json
+
+{
+  "label": "บ้านหลัก",
+  "recieveName": "เมียพี่หลวง (เปลี่ยนใจกลับมาหาเมียหลวง)",
+  "recieveAddress": "123 หมู่บ้านแสนสุข ซอยมิตรภาพ แขวงคลองเตย กรุงเทพฯ 10110",
+  "isDefault": true
+}
+
+### Delete user's address
+DELETE http://localhost:3000/api/users/me/addresses/6a1d532be71c7edeab3dcb0e

@@ -5,11 +5,15 @@ export const addressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  name: {
+  recieveName: {
     type: String,
     required: true,
   },
-  address: {
+  recieveAddress: {
+    type: String,
+    required: true,
+  },
+  recieveTel: {
     type: String,
     required: true,
   },
