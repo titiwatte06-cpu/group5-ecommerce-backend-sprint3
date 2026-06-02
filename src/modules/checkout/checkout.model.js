@@ -1,6 +1,7 @@
 //อันนี้เป็นโครงร่างเอาไว้ก่อน
+import mongoose from "mongoose"
 
-const orderSchema = new mongoose.Schema(
+export const orderSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
