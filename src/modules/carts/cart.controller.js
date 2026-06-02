@@ -14,6 +14,8 @@ export const addToCart = async (req, res, next) => {
     const userId = req.user?.userId; //Get userId from authUser middleware
 
     const product = await Product.findById(productId);
+
+    
   } catch (error) {
     next(error);
   }
