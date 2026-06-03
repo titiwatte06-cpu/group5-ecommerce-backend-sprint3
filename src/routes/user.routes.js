@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { authUser } from "../middleware/authUser.js";
+import { authUser, adminOnly } from "../middleware/authUser.js";
 
 export const router = Router();
 
@@ -28,7 +28,7 @@ router.post("/me/addresses", authUser, addUserAddress);
 router.put("/me/addresses/:addressId", authUser, updateUserAddress);
 router.delete("/me/addresses/:addressId", authUser, deleteUserAddress);
 router.post("/", createUser);
-router.get("/", getUsers);
-router.get("/:id", getUser);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
+router.get("/", authUser, adminOnly, getUsers);
+router.get("/:id", authUser, adminOnly, getUser);
+router.put("/:id", authUser, adminOnly, updateUser);
+router.delete("/:id", authUser, adminOnly, deleteUser);

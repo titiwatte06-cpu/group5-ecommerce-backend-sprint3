@@ -160,7 +160,7 @@ export const userLogin = async (req, res, next) => {
 
         //After foundUser & Password correct -> Make token
         const token = jwt.sign(
-            { userId: foundUser._id },
+            { userId: foundUser._id, role: foundUser.role },
             process.env.JWT_SECRET,
             {
                 expiresIn: "1h",
