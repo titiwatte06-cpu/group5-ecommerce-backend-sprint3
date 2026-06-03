@@ -1,0 +1,20 @@
+### Login to get cookie first
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "user7.test@example.com",
+    "password": "pass1234"
+}
+
+### Add product to shoping cart (Requires Login)
+POST http://localhost:3000/api/carts
+Content-Type: application/json
+
+{
+    "productId": "6a19167f3b9010b699421c87",
+    "quantity": 1
+}
+
+### Get cart details
+GET http://localhost:3000/api/carts

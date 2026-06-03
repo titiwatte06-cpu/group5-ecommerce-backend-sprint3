@@ -6,7 +6,7 @@ const classSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      require: true,
+      required: true,
       unique: true,
     },
     items: [
@@ -14,13 +14,13 @@ const classSchema = new mongoose.Schema(
         productId: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
-          require: true,
+          required: true,
         },
         quantity: {
           type: Number,
           required: true,
           default: 1,
-          min: [1, "Quantity should at lease 1"],
+          min: [1, "Quantity should at least 1"],
         },
       },
     ],
