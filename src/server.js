@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
     <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>JSD12 Backend Assessment</title>
+    <title>JSD12 Backend Group5</title>
     </head>
     <body>
     <h1>Group 5 Ecommerce</h1>
