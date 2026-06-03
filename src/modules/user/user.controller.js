@@ -171,7 +171,7 @@ export const userLogin = async (req, res, next) => {
         //setup token
         res.cookie("accessToken", token, {
             httpOnly: true,
-            secure: isProd,
+            secure: true,
             // sameSite: isProd ? "none" : "lax",
             sameSite: "none",
             path: "/",
@@ -228,7 +228,7 @@ export const userLogout = (req, res) => {
 
     res.clearCookie("accessToken", {
         httpOnly: true,
-        secure: isProd,
+        secure: true,
         // sameSite: isProd ? "none" : "lax",
         sameSite: "none",
         path: "/",
