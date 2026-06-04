@@ -3,5 +3,36 @@ Content-Type: application/json
 Cookie: <YOUR_ACCESS_TOKEN>
 {
   "productId": "6a19117e3b9010b699421c82",
-  "quantity": 2
+  "quantity": 3
 }
+
+###
+
+POST http://localhost:3000/api/cart
+Content-Type: application/json
+Cookie: <YOUR_ACCESS_TOKEN>
+
+{
+  "productId": "6a1914e63b9010b699421c84",
+  "quantity": 1
+}
+###
+DELETE http://localhost:3000/api/cart
+Content-Type: application/json
+Cookie: <YOUR_ACCESS_TOKEN>
+{
+  "productId": "6a19167f3b9010b699421c87"
+  
+}
+###
+PUT http://localhost:3000/api/cart/increase/6a1914e63b9010b699421c84
+Content-Type: application/json
+Cookie: <YOUR_ACCESS_TOKEN>
+###
+PUT http://localhost:3000/api/cart/decrease/6a1914e63b9010b699421c84
+Content-Type: application/json
+Cookie: <YOUR_ACCESS_TOKEN>
+
+# Cookie: <YOUR_ACCESS_TOKEN>
+
+
