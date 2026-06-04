@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
   address: [addressSchema],
-});
+}, { timestamps: true });
 
 //Convert password use bcrypt.hash before save.
 userSchema.pre("save", async function () {
