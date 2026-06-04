@@ -21,9 +21,21 @@ POST http://localhost:3000/api/carts
 Content-Type: application/json
 
 {
-    "productId": "6a19167f3b9010b699421c87",
+    "productId": "6a1914e63b9010b699421c84",
     "quantity": 1
 }
 
 ### Get cart details
 GET http://localhost:3000/api/carts
+
+### Edit cart item quantity
+PUT http://localhost:3000/api/carts
+Content-Type: application/json
+
+{
+    "productId": "6a1914e63b9010b699421c84",
+    "quantity": 10
+}
+
+### Clear all items from cart
+DELETE http://localhost:3000/api/carts
