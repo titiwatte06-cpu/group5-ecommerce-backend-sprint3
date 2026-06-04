@@ -1,5 +1,14 @@
-### Login to get cookie first
+### Login to get token
 POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "user7.test@example.com",
+    "password": "pass1234"
+}
+
+### User log out -> clear token
+POST http://localhost:3000/api/users/logout
 Content-Type: application/json
 
 {
