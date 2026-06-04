@@ -1,11 +1,7 @@
 import { Router } from "express";
-import { router as checkoutRouter } from "./checkout.routes.js";
+import { authUser } from "../middleware/authUser.js";
+import { createOrder } from "../modules/order/order.controller.js";
 
-export const router = Router()
+export const router = Router();
 
-
-router.use("/checkout",checkoutRouter)
-
-
-
-
+router.post("/", authUser, createOrder);

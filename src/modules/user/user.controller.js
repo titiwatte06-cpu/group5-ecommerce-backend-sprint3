@@ -171,9 +171,8 @@ export const userLogin = async (req, res, next) => {
         //setup token
         res.cookie("accessToken", token, {
             httpOnly: true,
-            secure: true,
-            // sameSite: isProd ? "none" : "lax",
-            sameSite: "none",
+            secure: isProd,
+            sameSite: isProd ? "none" : "lax",
             path: "/",
             maxAge: 60 * 60 * 1000, //1 hour
         });
@@ -253,7 +252,7 @@ export const getUserAddresses = async (req, res, next) => {
         const foundUser = await User.findById(userId);
         if (!foundUser) {
             return res
-                .status(400)
+                .status(404)
                 .json({ success: false, message: "User account not found!" });
         }
 

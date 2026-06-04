@@ -21,7 +21,6 @@ import {
 
 router.post("/login", userLogin);
 router.post("/logout", userLogout);
-router.get("/auth/me", authUser, authenUser);
 router.get("/profile", authUser, authenUser);
 router.get("/me/addresses", authUser, getUserAddresses);
 router.post("/me/addresses", authUser, addUserAddress);

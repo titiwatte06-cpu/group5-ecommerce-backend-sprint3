@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 //price, imageUrl with call from Product when user add product to cart.
-const classSchema = new mongoose.Schema(
+const cartSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -32,4 +32,4 @@ const classSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export const Cart = mongoose.model("Cart", classSchema);
+export const Cart = mongoose.model("Cart", cartSchema);
